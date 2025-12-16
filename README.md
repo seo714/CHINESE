@@ -40,6 +40,7 @@
     th, td {
       border: 1px solid #ccc;
       padding: 8px 14px;
+      text-align: center;
     }
 
     th {
@@ -60,9 +61,7 @@
       .then(res => res.arrayBuffer())
       .then(data => {
         const workbook = XLSX.read(data, { type: "array" });
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
         const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
         renderTable(json);
       });
@@ -72,13 +71,18 @@
 
       data.forEach((row, rowIndex) => {
         html += "<tr>";
-        row.forEach(cell => {
+
+        row.forEach((cell, colIndex) => {
+          // ❌ 2번째 열(colIndex === 1) 제외
+          if (colIndex === 1) return;
+
           if (rowIndex === 0) {
             html += `<th>${cell ?? ""}</th>`;
           } else {
             html += `<td>${cell ?? ""}</td>`;
           }
         });
+
         html += "</tr>";
       });
 
