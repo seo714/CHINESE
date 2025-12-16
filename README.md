@@ -13,10 +13,10 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif; /* ✅ 글씨체 변경 */
       background-color: #f5f5f5;
       display: flex;
       justify-content: center;
+      font-family: 'Poppins', system-ui, sans-serif;
     }
 
     .container {
@@ -27,7 +27,6 @@
       text-align: center;
     }
 
-    /* 제목 */
     .title {
       font-size: 28px;
       font-weight: 600;
@@ -38,18 +37,25 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
+      table-layout: fixed; /* ✅ 열 균등 */
+    }
+
+    tr {
+      width: 100%;
     }
 
     td {
-      border: none;                 /* 줄 제거 */
-      padding: 12px 6px;
-      text-align: center;
+      width: 100%;
+      display: block;          /* ✅ 칸 느낌 제거 */
+      border: none;
+      padding: 14px 8px;
       font-size: 17px;
+      background: white;       /* 행 단위 배경 */
+      margin-bottom: 8px;      /* 행 간격 */
       word-break: break-word;
     }
 
-    /* 모바일에서 글씨 살짝 더 크게 */
+    /* 모바일에서 살짝 더 크게 */
     @media (max-width: 480px) {
       td {
         font-size: 18px;
@@ -59,9 +65,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- ✅ CHINESE 대문자 제목 -->
     <div class="title">CHINESE</div>
-
     <div id="table-container"></div>
   </div>
 
