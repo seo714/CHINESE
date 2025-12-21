@@ -53,7 +53,7 @@
 </div>
 
 <script>
-fetch('chinese_phrases.csv')
+fetch('chinese_phrases.xlsx')
 .then(response => response.text())
 .then(data => {
     const lines = data.split('\n').filter(line => line.trim() !== '');
